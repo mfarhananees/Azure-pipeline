@@ -10,6 +10,11 @@ steps:
     versionspec: '3.x'
 
 - script: |
+    sudo apt=get update
+    sudo apt-get install -y nginx
+  displayName: 'INSTALL NGINX' 
+
+- script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
   displayName: 'INSTALL DEPENDENCIES'
