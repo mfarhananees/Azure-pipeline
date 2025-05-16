@@ -25,7 +25,8 @@ steps:
 
 - script: |
     echo "LINTING PASSED!" > lint_result.txt
-  displayName: 'DUMY LINTING'
+  displayName: 'DUMMY LINTING'
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '.'
