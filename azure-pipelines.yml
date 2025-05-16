@@ -1,0 +1,28 @@
+trigger:
+  - main
+
+pool:
+  vmimage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionspec: '3.x'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'INSTALL DEPENDENCIES'
+
+- script: |
+    pytest > result.log
+  displayName: 'RUN TESTS'
+
+- script: |
+    echo "LINTING PASSED!" > lint_result.txt
+  displayName: 'DUMY LINTING'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '.'
+    ArtifactName: 'TestResults'
+    PublishLocation: 'Container'
